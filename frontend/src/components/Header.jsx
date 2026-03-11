@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
@@ -22,6 +23,7 @@ const languages = [
 
 const Header = () => {
   const { language, changeLanguage, t } = useLanguage();
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const currentLanguage = languages.find(lang => lang.code === language) || languages[0];
@@ -89,10 +91,17 @@ const Header = () => {
 
             {/* Auth Buttons - Desktop */}
             <div className="hidden md:flex items-center space-x-2">
-              <Button variant="ghost" className="text-orange-600 hover:text-orange-700">
+              <Button 
+                variant="ghost" 
+                className="text-orange-600 hover:text-orange-700"
+                onClick={() => navigate('/login')}
+              >
                 {t('header.login')}
               </Button>
-              <Button className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white">
+              <Button 
+                className="bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
+                onClick={() => navigate('/signup')}
+              >
                 {t('header.signup')}
               </Button>
             </div>
@@ -130,10 +139,17 @@ const Header = () => {
                 {t('header.contact')}
               </a>
               <div className="flex flex-col space-y-2 pt-4 border-t border-orange-100">
-                <Button variant="outline" className="w-full">
+                <Button 
+                  variant="outline" 
+                  className="w-full"
+                  onClick={() => navigate('/login')}
+                >
                   {t('header.login')}
                 </Button>
-                <Button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white">
+                <Button 
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
+                  onClick={() => navigate('/signup')}
+                >
                   {t('header.signup')}
                 </Button>
               </div>

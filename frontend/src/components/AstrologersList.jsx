@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { astrologers } from '../data/mock';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -6,8 +7,21 @@ import { Button } from './ui/button';
 
 const AstrologersList = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerView = 4;
+
+  const handleConsultNow = (astrologer) => {
+    navigate('/booking', { 
+      state: { 
+        service: { 
+          title: `Astrology Consultation - ${astrologer.name}`,
+          description: astrologer.specialization,
+          price: 999
+        } 
+      } 
+    });
+  };
 
   const nextSlide = () => {
     setStartIndex((prev) => 
@@ -79,7 +93,9 @@ const AstrologersList = () => {
                     <span>{t('astrologersList.exp')} {astrologer.experience} {t('astrologersList.years')}</span>
                     <span>{astrologer.consultations}+ {t('astrologersList.consultations')}</span>
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white">
+                  <Button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
+                    onClick={() => handleConsultNow(astrologer)}
+                  >
                     Consult Now
                   </Button>
                 </div>

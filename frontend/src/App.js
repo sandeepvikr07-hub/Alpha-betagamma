@@ -5,7 +5,10 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 import { Toaster } from "./components/ui/sonner";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import AdminLogin from "./pages/AdminLogin";
+import BookingForm from "./pages/BookingForm";
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -30,6 +33,9 @@ function App() {
           <div className="App">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/booking" element={<BookingForm />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               {/* Protected admin routes - dashboard to be built */}
               <Route 

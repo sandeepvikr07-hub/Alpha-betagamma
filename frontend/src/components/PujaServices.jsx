@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { pujaServices } from '../data/mock';
 import { Clock, IndianRupee } from 'lucide-react';
@@ -6,6 +7,11 @@ import { Button } from './ui/button';
 
 const PujaServices = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
+
+  const handleBookNow = (service) => {
+    navigate('/booking', { state: { service } });
+  };
 
   return (
     <section id="pujas" className="py-16 bg-white">
@@ -47,7 +53,10 @@ const PujaServices = () => {
                     <span>{service.price}</span>
                   </div>
                 </div>
-                <Button className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white">
+                <Button 
+                  onClick={() => handleBookNow(service)}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white"
+                >
                   {t('services.bookNow')}
                 </Button>
               </div>
