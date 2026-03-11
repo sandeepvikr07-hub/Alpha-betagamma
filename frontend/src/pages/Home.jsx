@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import Marquee from '../components/Marquee';
 import HeroSection from '../components/HeroSection';
 import TrustIndicators from '../components/TrustIndicators';
 import HoroscopeForm from '../components/HoroscopeForm';
@@ -14,6 +15,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      <Marquee />
       <HeroSection />
       <TrustIndicators />
       <HoroscopeForm />
