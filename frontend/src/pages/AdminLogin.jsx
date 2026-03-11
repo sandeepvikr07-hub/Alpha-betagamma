@@ -5,7 +5,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useToast } from '../hooks/use-toast';
-import { Lock, Mail } from 'lucide-react';
+import { Lock, Mail, AlertCircle } from 'lucide-react';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
@@ -29,7 +29,7 @@ const AdminLogin = () => {
     } catch (error) {
       toast({
         title: "Login Failed",
-        description: error.response?.data?.detail || "Invalid email or password",
+        description: error.response?.data?.detail || "Invalid credentials. Please try again.",
         variant: "destructive"
       });
     } finally {
@@ -52,6 +52,20 @@ const AdminLogin = () => {
             <p className="text-gray-600 mt-2">ProudSanatani.shop CMS</p>
           </div>
 
+          {/* Security Notice */}
+          <div className="mb-6 p-4 bg-orange-50 border-l-4 border-orange-500 rounded">
+            <div className="flex items-start">
+              <AlertCircle className="h-5 w-5 text-orange-600 mr-2 flex-shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-semibold text-orange-800">Restricted Access</p>
+                <p className="text-xs text-orange-700 mt-1">
+                  This area is for authorized administrators only. 
+                  Unauthorized access attempts are logged.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
@@ -62,10 +76,11 @@ const AdminLogin = () => {
                   id="email"
                   type="email"
                   required
-                  placeholder="admin@proudsanatani.shop"
+                  placeholder="Enter admin email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"
+                  autoComplete="username"
                 />
               </div>
             </div>
@@ -78,10 +93,11 @@ const AdminLogin = () => {
                   id="password"
                   type="password"
                   required
-                  placeholder="Enter your password"
+                  placeholder="Enter admin password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10"
+                  autoComplete="current-password"
                 />
               </div>
             </div>
@@ -95,12 +111,10 @@ const AdminLogin = () => {
             </Button>
           </form>
 
-          {/* Info */}
-          <div className="mt-6 p-4 bg-orange-50 rounded-lg">
-            <p className="text-sm text-gray-600 text-center">
-              <strong>Default Credentials:</strong><br />
-              Email: admin@proudsanatani.shop<br />
-              Password: Admin@123
+          {/* Security Footer */}
+          <div className="mt-6 text-center">
+            <p className="text-xs text-gray-500">
+              Protected by secure authentication
             </p>
           </div>
         </div>

@@ -34,26 +34,42 @@ export const AuthProvider = ({ children }) => {
       });
       setUser(response.data);
     } catch (error) {
+      // Token invalid or expired - clear everything
+      console.error('Token verification failed');
       localStorage.removeItem('admin_token');
       setToken(null);
+      setUser(null);
     } finally {
       setLoading(false);
     }
   };
 
   const login = async (email, password) => {
-    const response = await axios.post(`${API}/admin/login`, { email, password });
-    const { token: newToken, email: userEmail } = response.data;
-    localStorage.setItem('admin_token', newToken);
-    setToken(newToken);
-    setUser({ email: userEmail });
-    return response.data;
+    try {
+      const response = await axios.post(`${API}/admin/login`, { email, password });
+      const { token: newToken, email: userEmail } = response.data;
+      
+      // Store token securely
+      localStorage.setItem('admin_token', newToken);
+      setToken(newToken);
+      setUser({ email: userEmail });
+      
+      // Log successful login (for security monitoring)
+      console.log('Admin login successful:', new Date().toISOString());
+      
+      return response.data;
+    } catch (error) {
+      // Log failed attempt (for security monitoring)
+      console.error('Failed login attempt:', new Date().toISOString());
+      throw error;
+    }
   };
 
   const logout = () => {
     localStorage.removeItem('admin_token');
     setToken(null);
     setUser(null);
+    console.log('Admin logged out:', new Date().toISOString());
   };
 
   return (
