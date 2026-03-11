@@ -70,7 +70,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-2">
                 <Phone className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                <span className="text-sm">+91 98765 43210</span>
+                <span className="text-sm">+91 8434411419</span>
               </li>
               <li className="flex items-start space-x-2">
                 <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0" />
@@ -90,37 +90,37 @@ const Footer = () => {
               <a
                 href="#"
                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
-                aria-label="Facebook"
-              >
+                aria-label="Facebook">
+
                 <Facebook className="h-5 w-5" />
               </a>
               <a
                 href="#"
                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
-                aria-label="Twitter"
-              >
+                aria-label="Twitter">
+
                 <Twitter className="h-5 w-5" />
               </a>
               <a
                 href="#"
                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
-                aria-label="Instagram"
-              >
+                aria-label="Instagram">
+
                 <Instagram className="h-5 w-5" />
               </a>
               <a
                 href="#"
                 className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
-                aria-label="Youtube"
-              >
+                aria-label="Youtube">
+
                 <Youtube className="h-5 w-5" />
               </a>
             </div>
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 };
 
 export default Footer;
